@@ -1,3 +1,4 @@
+// Get references to grid container and control buttons
 let container = document.getElementById("grid-container");
 let blackModeButton = document.getElementById("black-mode");
 let colourModeButton = document.getElementById("colour-mode");
@@ -7,19 +8,21 @@ let randomColourMode = false;
 let clearColour = "white";
 
 
-
+// Event listener for black mode button
 blackModeButton.addEventListener("click", () => {
     randomColourMode = false;
     changeColourToBlack();
 });
 
 
+// Event listener for colour mode button
 colourModeButton.addEventListener("click", () => {
     randomColourMode = true;
     makeGridInteractive(clickedColour);
 });
 
 
+// Event listener for clear mode button
 clearModeButton.addEventListener("click", () => {
     randomColourMode = false;
 
@@ -64,6 +67,9 @@ function makeGridInteractive(clickedColour) {
     let squares = document.querySelectorAll(".square");
     squares.forEach(square => {
         square.addEventListener("click", () => {
+            // set the square colour
+            // if randomColourMode is true use getRandomColour function to get the colour
+            // if randomColourMode is false, use the current clickedColour value
             square.style.backgroundColor = randomColourMode ? getRandomColour() : clickedColour;
         });
     });
