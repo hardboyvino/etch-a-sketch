@@ -1,5 +1,19 @@
 let container = document.getElementById("grid-container");
-let clickedColour = "black";
+let blackModeButton = document.getElementById("black-mode");
+let colourModeButton = document.getElementById("colour-mode");
+let clickedColour = "red";
+let randomColourMode = false;
+
+blackModeButton.addEventListener("click", () => {
+    randomColourMode = false;
+    changeColourToBlack();
+});
+
+colourModeButton.addEventListener("click", () => {
+    randomColourMode = true;
+    makeGridInteractive(clickedColour);
+});
+
 
 function makeGrid(widthSquares, heightSquares) {
     container.style.gridTemplateColumns = `repeat(${widthSquares}, 1fr)`;
@@ -10,6 +24,7 @@ function makeGrid(widthSquares, heightSquares) {
         square.classList.add("square");
         container.appendChild(square);
     };
+    makeGridInteractive(clickedColour);
 };
 
 
@@ -30,13 +45,34 @@ function drawGrid() {
 }
 
 function makeGridInteractive(clickedColour) {
-    // let squares = document.querySelectorAll(".square");
+    let squares = document.querySelectorAll(".square");
 
-    document.querySelectorAll(".square").forEach(square => {
+    squares.forEach(square => {
         square.addEventListener("click", () => {
-            square.style.backgroundColor = clickedColour;
+            square.style.backgroundColor = randomColourMode ? getRandomColour() : clickedColour;
         });
     });
 }
 
+
+function changeColourToBlack() {
+    clickedColour = "black";
+    makeGridInteractive(clickedColour);
+}
+
+function changeColourToRandom() {
+    clickedColour = getRandomColour();
+    makeGridInteractive(clickedColour);
+}
+
+function getRandomColour() {
+    const hexLetters = "0123456789ABCDEF";
+    let colour = "#";
+
+    for (let i = 0; i < 6; i++) {
+        colour += hexLetters[Math.floor(Math.random() * 16)];
+    }
+    return colour
+}
+// create a 16x16 grid by default
 makeGrid(16, 16);
