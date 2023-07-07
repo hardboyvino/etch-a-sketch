@@ -14,8 +14,9 @@ function makeGrid(widthSquares, heightSquares) {
 
 
 function drawGrid() {
+    // refresh the grid as if there was no grid before
     container.innerHTML = "";
-    
+
     let userPrompt = parseInt(prompt("What size of grid do you want? ", 16));
 
     if (Number.isInteger(userPrompt) === true && userPrompt > 0 && userPrompt < 65) {
@@ -38,4 +39,4 @@ function makeGridInteractive(clickedColour) {
     });
 }
 
-drawGrid();
+makeGrid(16, 16);
