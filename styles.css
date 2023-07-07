@@ -1,12 +1,25 @@
 body {
     width: 100vb;
     height: 100vh;
+    background-color: aliceblue;
+    align-items: center;
+}
+
+.header {
+    color: black;
+    font-size: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #main-container {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    gap: 20px;
+
 }
 
 #grid-container {
@@ -20,6 +33,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 20px;
 }
 
 .square {
