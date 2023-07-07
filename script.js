@@ -1,17 +1,32 @@
 let container = document.getElementById("grid-container");
 let blackModeButton = document.getElementById("black-mode");
 let colourModeButton = document.getElementById("colour-mode");
+let clearModeButton = document.getElementById("clear");
 let clickedColour = "red";
 let randomColourMode = false;
+let clearColour = "white";
+
+
 
 blackModeButton.addEventListener("click", () => {
     randomColourMode = false;
     changeColourToBlack();
 });
 
+
 colourModeButton.addEventListener("click", () => {
     randomColourMode = true;
     makeGridInteractive(clickedColour);
+});
+
+
+clearModeButton.addEventListener("click", () => {
+    randomColourMode = false;
+
+    let squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        square.style.backgroundColor = clearColour;
+        });
 });
 
 
@@ -44,9 +59,9 @@ function drawGrid() {
     makeGridInteractive(clickedColour);
 }
 
+
 function makeGridInteractive(clickedColour) {
     let squares = document.querySelectorAll(".square");
-
     squares.forEach(square => {
         square.addEventListener("click", () => {
             square.style.backgroundColor = randomColourMode ? getRandomColour() : clickedColour;
@@ -60,10 +75,12 @@ function changeColourToBlack() {
     makeGridInteractive(clickedColour);
 }
 
+
 function changeColourToRandom() {
     clickedColour = getRandomColour();
     makeGridInteractive(clickedColour);
 }
+
 
 function getRandomColour() {
     const hexLetters = "0123456789ABCDEF";
